@@ -1,0 +1,221 @@
+////// Pergunta 1 - Quanto foi o crescimento dos lançamentos de jogos indie nos últimos 5 anos?
+
+/* Jogos indie */
+
+select year (release_date) as ano, count(appid) as jogos_lançado 
+from tabela_indie 
+group by ano 
+order by ano;
+
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2001,1);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2003,2);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2005,3);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2006,7);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2007,2);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2008,18);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2009,50);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2010,59);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2011,77);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2012,133);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2013,183);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2014,671);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2015,1540);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2016,2579);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2017,3946);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2018,5511);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2019,1450);
+
+
+
+
+/* Jogos não-indie */
+
+select year (release_date) as ano, count(appid) as jogos_lançado 
+from tabela_not_indie 
+group by ano 
+order by ano;
+
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (1997,1);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (1998,1);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (1999,2);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2000,2);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2001,3);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2002,1);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2003,1);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2004,6);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2005,3);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2006,41);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2007,91);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2008,127);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2009,255);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2010,179);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2011,162);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2012,187);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2013,235);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2014,884);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2015,1057);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2016,1782);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2017,2411);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2018,2649);
+INSERT INTO `` (`ano`,`jogos_lançado`) VALUES (2019,763);
+
+
+////// Pergunta 2 - Qual é a média de avaliações positivas entre os jogos indie e não-indie?
+
+/* Jogos indie */
+
+select sum(positive_ratings) + sum(negative_ratings) as todos_ava, 
+sum(positive_ratings) as qtd_likes 
+from tabela_indie_infs;
+
+INSERT INTO `` (`todos_ava`,`qtd_likes`) VALUES (3208527,2660627);
+
+
+/* Jogos não-indie */
+
+select sum(positive_ratings) + sum(negative_ratings) as todos_ava, 
+sum(positive_ratings) as qtd_likes 
+from tabela_not_indie_infs;
+
+INSERT INTO `` (`todos_ava`,`qtd_likes`) VALUES (29595155,24429495);
+
+
+////// Pergunta 3 - Qual é o tempo médio dos jogadores nos jogos indies em comparação com os não-indie?
+
+/* Jogos indie */
+
+select round(avg(average_playtime),2) as media
+from tabela_indie_infs;
+
+INSERT INTO `` (`media`) VALUES (60.80);
+
+
+/* Jogos não-indie */
+
+select round(avg(average_playtime),2) as media
+from tabela_not_indie_infs;
+
+INSERT INTO `` (`media`) VALUES (283.05);
+
+
+
+////// Pergunta 4 - Quantidade de jogos indies e os outros que são muitplayer.
+
+/* Jogos indie */
+
+SELECT count(*) from tabela_indie
+where categories like "%Multi-player%";
+INSERT INTO `` (`count(*)`) VALUES (2391);
+
+/* Jogos não-indie */
+
+SELECT count(*) from tabela_not_indie
+where categories like "%Multi-player%";
+
+INSERT INTO `` (`count(*)`) VALUES (2917);
+
+////// Pergunta 5 - Qual é o valor dos jogos indies em comparação com os outros?
+
+/* Jogos indie */
+
+Select round(avg(price),2) as valor_medio 
+from tabela_indie_infs;
+
+INSERT INTO `` (`valor_medio`) VALUES (4.6);
+
+/* Jogos não-indie */
+
+Select round(avg(price),2) as valor_medio 
+from tabela_not_indie_infs;
+
+INSERT INTO `` (`valor_medio`) VALUES (8.29);
+
+Pergunta 6 - Quais são os 5 estilos que mais tem jogos indies e os dos não indie?
+
+/* Jogos indie */
+select  count(*) as Total_De_Jogos from tabela_indie
+where steamspy_tags like "%RPG%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (1372);
+
+select  count(*) as Total_De_Jogos from tabela_indie
+where steamspy_tags like "%Strategy%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (1991);
+
+select  count(*) as Total_De_Jogos from tabela_indie
+where steamspy_tags like "%Action%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (6677);
+
+select  count(*) as Total_De_Jogos from tabela_indie
+where steamspy_tags like "%Casual%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (5602);
+
+select  count(*) as Total_De_Jogos from tabela_indie
+where steamspy_tags like "%Simulation%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (1377);
+
+/* Jogos não-indie */
+select  count(*) as Total_De_Jogos from tabela_not_indie
+where steamspy_tags like "%RPG%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (1491);
+
+select  count(*) as Total_De_Jogos from tabela_not_indie
+where steamspy_tags like "%Strategy%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (2189);
+
+select  count(*) as Total_De_Jogos from tabela_not_indie
+where steamspy_tags like "%Action%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (3667);
+
+select  count(*) as Total_De_Jogos from tabela_not_indie
+where steamspy_tags like "%Casual%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (2603);
+
+select  count(*) as Total_De_Jogos from tabela_not_indie
+where steamspy_tags like "%Simulation%";
+
+INSERT INTO `` (`Total_De_Jogos`) VALUES (1907);
+
+/////// Pergunta 7 - Quais os 7 gêneros de maior quantidade de jogos entre os indies e não indies?
+
+/* Jogos indie */
+
+select distinct genres, count(genres) as quantidade
+from tabela_indie
+group by genres
+order by quantidade desc
+limit 8;
+
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Action;Indie,1752);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Casual;Indie,1454);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Action;Adventure;Indie,1127);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Adventure;Indie,1075);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Action;Casual;Indie,978);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Indie,751);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Adventure;Casual;Indie,741);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Casual;Indie;Strategy,424);
+
+/* Jogos não-indie */
+
+select distinct genres, count(genres) as quantidade
+from tabela_not_indie
+group by genres
+order by quantidade desc
+limit 8;
+
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Action,820);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Adventure,520);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Casual,512);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Adventure;Casual,505);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Strategy,474);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Action;Adventure,362);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (Simulation,321);
+INSERT INTO `` (`genres`,`quantidade`) VALUES (RPG,253);
